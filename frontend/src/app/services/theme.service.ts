@@ -31,9 +31,7 @@ export class ThemeService {
     if (saved === 'dark' || saved === 'light') {
       return saved;
     }
-    // Default to dark mode matching macmdviewer's dark aesthetic
-    return window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches
-      ? 'light'
-      : 'dark';
+    // Default to light mode
+    return 'light';
   }
 }

@@ -1,0 +1,705 @@
+/* ==========================================================================
+   NEO-BRUTALIST BENTO BOX VAULT - CORE STYLESHEET
+   Strict Neo-Brutalist Design Rules:
+   - 0px border-radius everywhere
+   - Stark #000000 borders (3px-4px)
+   - Raw #F4F4F0 background
+   - Harsh saturated #0000CC lowercase headers
+   - Hard mechanical block shadows (4px 4px 0 #000)
+   - Zero soft shadows, zero blur, zero gradients
+   ========================================================================== */
+
+:root {
+  --bg-main: #F4F4F0;
+  --bg-card: #FFFFFF;
+  --border-color: #000000;
+  --border-width: 3px;
+  --border-heavy: 4px;
+
+  /* Harsh Utilitarian Accent Palette (No gradients) */
+  --blue-header: #0000CC;
+  --yellow-mustard: #FFDE59;
+  --orange-harsh: #FF5E00;
+  --green-util: #00E676;
+  --ink: #000000;
+  --muted-mono: #555555;
+  --accent-tag: #E2E2DC;
+
+  /* Typography */
+  --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', Courier, monospace;
+}
+
+/* Reset & Box Sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border-radius: 0 !important; /* STRICT NEO-BRUTALISM: NO ROUNDED CORNERS */
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-main);
+  color: var(--ink);
+  font-family: var(--font-display);
+  line-height: 1.35;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Application Container */
+.app-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Top Notification Banner / Ticker */
+.sys-ticker {
+  background: var(--yellow-mustard);
+  border: var(--border-width) solid var(--border-color);
+  padding: 8px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  box-shadow: 4px 4px 0px var(--border-color);
+}
+
+.ticker-tag {
+  background: #000;
+  color: #fff;
+  padding: 2px 6px;
+  margin-right: 8px;
+}
+
+/* ==========================================================================
+   BENTO BOX GRID LAYOUT
+   ========================================================================== */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+
+/* Base Bento Cell */
+.bento-cell {
+  background-color: var(--bg-card);
+  border: var(--border-width) solid var(--border-color);
+  box-shadow: 6px 6px 0px var(--border-color);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+/* Cell Section Headers: Strictly lowercase, bold, harsh blue */
+.cell-header {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: var(--blue-header);
+  text-transform: lowercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cell-header::before {
+  content: '>';
+  color: var(--border-color);
+  font-weight: 900;
+}
+
+/* ==========================================================================
+   SPECIFIC BENTO CELLS
+   ========================================================================== */
+
+/* 1. HEADER CELL (Top Span: 12 Cols) */
+.cell-header-top {
+  grid-column: span 12;
+  background-color: var(--bg-main);
+  border: var(--border-heavy) solid var(--border-color);
+  box-shadow: 6px 6px 0px var(--border-color);
+  padding: 20px 24px;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.vault-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-icon-box {
+  width: 44px;
+  height: 44px;
+  background-color: #000;
+  color: var(--yellow-mustard);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-weight: 900;
+  font-size: 1.4rem;
+  border: 2px solid #000;
+}
+
+.vault-title {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  text-transform: lowercase;
+  color: var(--ink);
+}
+
+.vault-title .ext {
+  color: var(--blue-header);
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* Search Bar with thick raw outline */
+.search-container {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: var(--border-width) solid var(--border-color);
+  box-shadow: 3px 3px 0px var(--border-color);
+}
+
+.search-prefix {
+  font-family: var(--font-mono);
+  font-weight: 900;
+  font-size: 0.85rem;
+  padding: 10px 12px;
+  background: #EAEAE4;
+  border-right: var(--border-width) solid var(--border-color);
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 10px 14px;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink);
+  width: 260px;
+}
+
+.search-input::placeholder {
+  color: var(--muted-mono);
+  font-weight: 500;
+}
+
+/* Mechanical Button */
+.btn-brutal {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  font-weight: 900;
+  text-transform: lowercase;
+  padding: 10px 18px;
+  background-color: var(--yellow-mustard);
+  color: var(--ink);
+  border: var(--border-width) solid var(--border-color);
+  box-shadow: 4px 4px 0px var(--border-color);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.06s ease, box-shadow 0.06s ease;
+  user-select: none;
+  text-decoration: none;
+}
+
+.btn-brutal:hover {
+  background-color: #FFE600;
+}
+
+.btn-brutal:active {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0px var(--border-color);
+}
+
+.btn-brutal.btn-action {
+  background-color: var(--orange-harsh);
+  color: #fff;
+}
+
+.btn-brutal.btn-action:hover {
+  background-color: #FF4500;
+}
+
+/* 2. STAT CELL 1: TOTAL UPLOADS (Top Left: 3 Cols) */
+.cell-stat-1 {
+  grid-column: span 3;
+}
+
+/* 3. STAT CELL 2: ACTIVE SUBJECTS (Top Middle: 3 Cols) */
+.cell-stat-2 {
+  grid-column: span 3;
+}
+
+/* Massive unstyled black numbers */
+.stat-massive-number {
+  font-family: var(--font-display);
+  font-size: clamp(3.8rem, 5vw, 5.4rem);
+  font-weight: 900;
+  line-height: 0.95;
+  color: var(--ink);
+  letter-spacing: -0.05em;
+  margin: auto 0;
+  padding: 10px 0;
+}
+
+.stat-footer-meta {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--muted-mono);
+  font-weight: 700;
+  border-top: 2px solid var(--border-color);
+  padding-top: 8px;
+  margin-top: 8px;
+}
+
+/* 4. ACTIVITY CELL: DOWNLOAD HISTORY (Bottom Left: 6 Cols) */
+.cell-activity {
+  grid-column: span 6;
+  min-height: 280px;
+}
+
+.chart-wrapper {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bar-chart-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 140px;
+  padding: 10px 10px 0;
+  border-bottom: 3px solid var(--border-color); /* Grounded on solid black x-axis line */
+  gap: 12px;
+}
+
+.bar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.bar-value {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 900;
+  color: var(--ink);
+}
+
+.bar-block {
+  width: 100%;
+  border: 2px solid var(--border-color);
+  border-bottom: none;
+  background-color: var(--orange-harsh);
+  transition: height 0.3s ease;
+}
+
+.bar-block.alt {
+  background-color: var(--yellow-mustard);
+}
+
+.bar-labels {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 10px 0;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+/* 5. MAIN FEED CELL: RECENT FILES (Center/Right Span: 6 Cols, Row Span 2) */
+.cell-main-feed {
+  grid-column: span 6;
+  grid-row: span 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.feed-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.feed-filter-tags {
+  display: flex;
+  gap: 6px;
+}
+
+.filter-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 3px 7px;
+  border: 2px solid #000;
+  background: var(--bg-main);
+  cursor: pointer;
+}
+
+.filter-tag.active {
+  background: #000;
+  color: #fff;
+}
+
+.file-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 2px solid var(--border-color);
+  background: #fff;
+  overflow-y: auto;
+  max-height: 480px;
+}
+
+/* Individual File Row */
+.file-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-bottom: 2px solid var(--border-color);
+  background: #fff;
+  transition: background 0.05s ease;
+}
+
+.file-row:last-child {
+  border-bottom: none;
+}
+
+.file-row:hover {
+  background: #FAFAEE;
+}
+
+.file-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.file-badge {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 900;
+  padding: 3px 6px;
+  border: 2px solid #000;
+  background: var(--yellow-mustard);
+  flex-shrink: 0;
+}
+
+.file-badge.badge-zip {
+  background: var(--green-util);
+}
+
+.file-badge.badge-md {
+  background: #EAEAE4;
+}
+
+.file-badge.badge-ppt {
+  background: var(--orange-harsh);
+  color: #fff;
+}
+
+.file-name {
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.file-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.file-meta-mono {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--muted-mono);
+  font-weight: 700;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.row-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.btn-mini {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 900;
+  padding: 4px 8px;
+  border: 2px solid #000;
+  background: #fff;
+  box-shadow: 2px 2px 0px #000;
+  cursor: pointer;
+  text-decoration: none;
+  color: #000;
+}
+
+.btn-mini:hover {
+  background: var(--yellow-mustard);
+}
+
+.btn-mini:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0 0 0 #000;
+}
+
+/* 6. UPLOAD ZONE CELL: QUICK DROP (Bottom Right: 6 Cols) */
+.cell-upload-zone {
+  grid-column: span 6;
+  min-height: 180px;
+}
+
+.drop-area {
+  flex: 1;
+  border: 3px dashed var(--border-color);
+  background-color: var(--bg-main);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  cursor: pointer;
+  transition: background-color 0.1s ease, border-color 0.1s ease;
+  user-select: none;
+}
+
+.drop-area:hover,
+.drop-area.dragover {
+  background-color: #EFEFE8;
+  border-color: var(--blue-header);
+}
+
+.drop-icon {
+  font-size: 2rem;
+  margin-bottom: 6px;
+}
+
+.drop-text-mono {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 900;
+  color: var(--ink);
+  letter-spacing: 0.05em;
+}
+
+.drop-hint-mono {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted-mono);
+  margin-top: 4px;
+}
+
+/* ==========================================================================
+   POPUP MODAL (Strict Neo-Brutalist Mechanical Card)
+   ========================================================================== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 10000;
+}
+
+.modal-backdrop.active {
+  display: flex;
+}
+
+.modal-box-brutal {
+  width: 100%;
+  max-width: 580px;
+  background: var(--bg-main);
+  border: var(--border-heavy) solid #000;
+  box-shadow: 10px 10px 0px #000;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-titlebar {
+  background: #000;
+  color: #fff;
+  padding: 12px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 900;
+}
+
+.modal-close-btn {
+  background: var(--orange-harsh);
+  color: #fff;
+  border: 2px solid #fff;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.modal-close-btn:hover {
+  background: #ff2200;
+}
+
+.modal-content {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.brutal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.brutal-label {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 900;
+  color: var(--blue-header);
+  text-transform: lowercase;
+}
+
+.brutal-input {
+  border: 3px solid #000;
+  background: #fff;
+  padding: 10px 12px;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  font-weight: 700;
+  outline: none;
+  box-shadow: 3px 3px 0px #000;
+}
+
+.brutal-input:focus {
+  background: #FFFFF0;
+  box-shadow: 5px 5px 0px #000;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 14px 22px 20px;
+  border-top: 2px solid #000;
+}
+
+/* ==========================================================================
+   RESPONSIVE LAYOUT (BENTO BOX COMPARTMENTAL STACKING)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .cell-stat-1 {
+    grid-column: span 6;
+  }
+  .cell-stat-2 {
+    grid-column: span 6;
+  }
+  .cell-activity {
+    grid-column: span 12;
+  }
+  .cell-main-feed {
+    grid-column: span 12;
+  }
+  .cell-upload-zone {
+    grid-column: span 12;
+  }
+}
+
+@media (max-width: 680px) {
+  .app-container {
+    padding: 12px;
+    gap: 14px;
+  }
+  .bento-grid {
+    gap: 14px;
+  }
+  .cell-header-top {
+    grid-column: span 12;
+  }
+  .header-inner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .search-input {
+    width: 100%;
+  }
+  .cell-stat-1,
+  .cell-stat-2 {
+    grid-column: span 12;
+  }
+  .file-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .file-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .sys-ticker {
+    flex-direction: column;
+    gap: 4px;
+    text-align: center;
+  }
+}

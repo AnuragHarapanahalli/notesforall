@@ -1,0 +1,446 @@
+/* ==========================================================================
+   NotesForAll — Neo-Brutalist Design System (Light & Dark Modes)
+   Strict Aesthetic Guidelines:
+   - 0px border-radius everywhere (NO rounded corners)
+   - Thick solid borders (2px, 3px, 4px)
+   - Section headers: strictly lowercase, bold, harsh saturated blue (#0000CC in light, #4D88FF in dark)
+   - Mechanical block button shadows with tactile click depression
+   - Flat utilitarian accents (Mustard #FFDE59, Harsh Orange #FF5E00, Bright Green #00E676)
+   - High contrast, spacious layouts with comfortable padding and line-heights
+   ========================================================================== */
+
+:root,
+[data-theme="light"] {
+  --bg: #F4F4F0;
+  --bg-elevated: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #FFF9DB;
+  --ink: #000000;
+  --text: #1A1A1A;
+  --muted: #555555;
+  --border: #000000;
+  --border-width: 3px;
+  --border-thick: 4px;
+  --border-thin: 2px;
+  --border-color: #000000;
+  --shadow-color: #000000;
+
+  /* Harsh Utilitarian Accents (Zero gradients) */
+  --blue-header: #0000CC;
+  --accent: #0000CC;
+  --accent-bright: #0000EE;
+  --accent-glow: rgba(0, 0, 204, 0.15);
+
+  --yellow: #FFDE59;
+  --mustard: #FFDE59;
+  --orange: #FF5E00;
+  --harsh-orange: #FF5E00;
+  --green: #00E676;
+  --red: #FF3333;
+
+  --nav-bg: #F4F4F0;
+  --nav-border: #000000;
+  --input-bg: #FFFFFF;
+  --sub-bar-bg: #EAEAE4;
+  --footer-bg: #FFFFFF;
+
+  --radius: 0px !important;
+  --radius-sm: 0px !important;
+  --radius-pill: 0px !important;
+
+  --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+[data-theme="dark"] {
+  --bg: #121214;
+  --bg-elevated: #1E1E22;
+  --bg-card: #1A1A1E;
+  --bg-card-hover: #26262C;
+  --ink: #FFFFFF;
+  --text: #E6E6E6;
+  --muted: #A0A0A0;
+  --border: #FFFFFF;
+  --border-width: 3px;
+  --border-thick: 4px;
+  --border-thin: 2px;
+  --border-color: #FFFFFF;
+  --shadow-color: #000000;
+
+  /* Harsh Accents adjusted for dark contrast */
+  --blue-header: #5C93FF;
+  --accent: #5C93FF;
+  --accent-bright: #75A5FF;
+  --accent-glow: rgba(92, 147, 255, 0.25);
+
+  --yellow: #FFDE59;
+  --mustard: #FFDE59;
+  --orange: #FF6E1A;
+  --harsh-orange: #FF6E1A;
+  --green: #00E676;
+  --red: #FF4D4D;
+
+  --nav-bg: #121214;
+  --nav-border: #FFFFFF;
+  --input-bg: #1E1E22;
+  --sub-bar-bg: #222226;
+  --footer-bg: #1A1A1E;
+
+  --radius: 0px !important;
+  --radius-sm: 0px !important;
+  --radius-pill: 0px !important;
+}
+
+/* ==========================================================================
+   GLOBAL RESET — ZERO ROUNDED CORNERS EVERYWHERE
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border-radius: 0 !important;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-display);
+  color: var(--ink);
+  background-color: var(--bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.5;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+::selection {
+  background: var(--yellow);
+  color: #000000;
+}
+
+a {
+  color: var(--blue-header);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 3vw, 32px);
+}
+
+/* Typography with ample spacing */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  color: var(--ink);
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 900;
+  margin-bottom: 12px;
+}
+
+h2 {
+  font-size: clamp(22px, 3.2vw, 36px);
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+p {
+  line-height: 1.6;
+}
+
+/* Section Header Rule: Strictly lowercase, bold, harsh saturated blue */
+.section-header-brutal,
+.cell-header {
+  font-family: var(--font-mono);
+  font-size: 0.92rem;
+  font-weight: 900;
+  color: var(--blue-header);
+  text-transform: lowercase;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-header-brutal::before,
+.cell-header::before {
+  content: '>';
+  color: var(--ink);
+  font-weight: 900;
+}
+
+/* ==========================================================================
+   MECHANICAL BUTTONS
+   Solid block shadow (4px 4px 0 var(--border)) & active depressed state
+   ========================================================================== */
+.btn,
+.btn-brutal {
+  font-family: var(--font-mono);
+  cursor: pointer;
+  border: var(--border-thin) solid var(--border);
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  font-weight: 900;
+  text-transform: lowercase;
+  text-decoration: none;
+  display: inline-flex;
+  white-space: nowrap;
+  background-color: var(--yellow);
+  color: #000000;
+  box-shadow: 4px 4px 0px var(--border);
+  transition: transform 0.08s ease, box-shadow 0.08s ease, background-color 0.1s ease;
+  user-select: none;
+}
+
+.btn:hover,
+.btn-brutal:hover {
+  background-color: #FFE600;
+  text-decoration: none;
+}
+
+.btn:active,
+.btn-brutal:active {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0px var(--border);
+}
+
+.btn-primary,
+.btn-action {
+  background: var(--harsh-orange);
+  color: #FFFFFF;
+  border-color: var(--border);
+}
+
+.btn-primary:hover,
+.btn-action:hover {
+  background: #E65100;
+  color: #FFFFFF;
+}
+
+.btn-ghost {
+  color: var(--ink);
+  border: 2px solid var(--border);
+  background: var(--bg-elevated);
+  box-shadow: 3px 3px 0px var(--border);
+}
+
+.btn-ghost:hover {
+  background: var(--bg-card-hover);
+  color: var(--ink);
+}
+
+.btn-ghost:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px var(--border);
+}
+
+/* POPPING CONTRIBUTE BUTTON - HIGH ATTRACTION */
+.btn-contribute-pop {
+  background: var(--harsh-orange) !important;
+  color: #FFFFFF !important;
+  border: 3px solid var(--border) !important;
+  box-shadow: 5px 5px 0px var(--border) !important;
+  padding: 11px 22px !important;
+  font-size: 0.92rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.03em !important;
+  text-transform: uppercase !important;
+  animation: pulse-border 2.5s infinite ease-in-out;
+}
+
+.btn-contribute-pop:hover {
+  background: #FF4500 !important;
+  transform: translate(-1px, -1px);
+  box-shadow: 6px 6px 0px var(--border) !important;
+}
+
+.btn-contribute-pop:active {
+  transform: translate(3px, 3px) !important;
+  box-shadow: 2px 2px 0px var(--border) !important;
+}
+
+@keyframes pulse-border {
+  0%, 100% {
+    box-shadow: 5px 5px 0px var(--border);
+  }
+  50% {
+    box-shadow: 6px 6px 0px var(--yellow);
+  }
+}
+
+/* ==========================================================================
+   CARDS & BENTO CELLS
+   ========================================================================== */
+.card,
+.bento-cell {
+  background: var(--bg-card);
+  border: var(--border-width) solid var(--border);
+  box-shadow: 6px 6px 0px var(--border);
+  position: relative;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.card:hover {
+  box-shadow: 8px 8px 0px var(--border);
+}
+
+/* Neo-Brutalist Frame Window */
+.mac-window {
+  background: var(--bg-elevated);
+  border: var(--border-thick) solid var(--border);
+  box-shadow: 7px 7px 0px var(--border);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.mac-window-bar {
+  background: var(--yellow);
+  color: #000000;
+  border-bottom: var(--border-thin) solid var(--border);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.traffic-dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border: 2px solid #000000;
+  display: inline-block;
+}
+
+.dot-red { background: #FF5E00; }
+.dot-yellow { background: #FFDE59; }
+.dot-green { background: #00E676; }
+
+/* ==========================================================================
+   FORM INPUTS & CONTROLS
+   ========================================================================== */
+.form-input,
+.form-textarea,
+.custom-select {
+  width: 100%;
+  font-family: var(--font-mono);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--input-bg);
+  border: var(--border-thin) solid var(--border);
+  padding: 12px 16px;
+  box-shadow: 3px 3px 0px var(--border);
+  outline: none;
+  transition: box-shadow 0.1s ease, background 0.1s ease;
+}
+
+.form-input:focus,
+.custom-select:focus {
+  background: var(--bg-card-hover);
+  box-shadow: 5px 5px 0px var(--blue-header);
+}
+
+/* Document & Markdown Viewer Boundary rules */
+.markdown-scroller {
+  overflow-x: hidden !important;
+}
+
+.markdown-sheet,
+.docx-sheet {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  overflow-wrap: break-word !important;
+  font-family: var(--font-display);
+  color: var(--ink);
+}
+
+.markdown-sheet img,
+.docx-sheet img,
+article.docx-sheet img {
+  max-width: 100% !important;
+  width: auto !important;
+  height: auto !important;
+  max-height: 75vh !important;
+  object-fit: contain !important;
+  display: block !important;
+  margin: 1.8rem auto !important;
+  box-sizing: border-box !important;
+  border: 2px solid var(--border) !important;
+  box-shadow: 4px 4px 0 var(--border);
+}
+
+.markdown-sheet table,
+.docx-sheet table {
+  max-width: 100% !important;
+  display: block;
+  overflow-x: auto;
+  border-collapse: collapse;
+  margin: 1.2rem 0;
+  border: 2px solid var(--border);
+}
+
+.markdown-sheet th,
+.markdown-sheet td,
+.docx-sheet th,
+.docx-sheet td {
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+}
+
+.markdown-sheet th {
+  background: var(--yellow);
+  color: #000000;
+  font-weight: 800;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+  .btn, .btn-brutal {
+    padding: 8px 16px;
+    font-size: 0.84rem;
+  }
+}

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>class_notes_vault // Neo-Brutalist Academic Bento</title>
+  <!-- Google Fonts: Space Grotesk (Stark Sans) & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800;900&family=Space+Grotesk:wght@500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app-container">
+
+    <!-- Top Utilitarian Status Bar -->
+    <aside class="sys-ticker">
+      <div>
+        <span class="ticker-tag">SYSTEM_INFO</span>
+        <span>REPO: NOTES_VAULT // BUILD: 2026.09.10 // MODE: NEO_BRUTALIST_STARK</span>
+      </div>
+      <div>
+        <span>STORAGE_STATUS: OPTIMAL // ENCRYPTION: NONE // ACCESS: PUBLIC</span>
+      </div>
+    </aside>
+
+    <!-- Bento Grid Container -->
+    <main class="bento-grid">
+
+      <!-- ====================================================================
+           1. HEADER CELL (Top Span)
+           ==================================================================== -->
+      <section class="bento-cell cell-header-top">
+        <div class="header-inner">
+          <div class="vault-brand">
+            <div class="brand-icon-box">[#]</div>
+            <div>
+              <h1 class="vault-title">class_notes_vault<span class="ext">.sys</span></h1>
+            </div>
+          </div>
+
+          <div class="header-controls">
+            <!-- Search bar with thick black outline -->
+            <div class="search-container">
+              <span class="search-prefix">QUERY:</span>
+              <input
+                id="searchInput"
+                type="text"
+                class="search-input"
+                placeholder="search notes, pyqs, ppts..."
+                autocomplete="off"
+              />
+            </div>
+
+            <!-- Hard-edged upload note button -->
+            <button id="openUploadBtn" class="btn-brutal btn-action" title="Open upload modal">
+              <span>+</span>
+              <span>upload note</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           2. STAT CELL 1 (Top Left)
+           Header: total uploads (blue, lowercase)
+           Content: Massive unstyled black number
+           ==================================================================== -->
+      <section class="bento-cell cell-stat-1">
+        <h2 class="cell-header">total uploads</h2>
+        <div class="stat-massive-number" id="statTotalUploads">42</div>
+        <div class="stat-footer-meta">
+          <span>METRIC_ID: UPL_COUNT // +12% VS PREV_WEEK</span>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           3. STAT CELL 2 (Top Middle)
+           Header: active subjects (blue, lowercase)
+           Content: Massive fractional number
+           ==================================================================== -->
+      <section class="bento-cell cell-stat-2">
+        <h2 class="cell-header">active subjects</h2>
+        <div class="stat-massive-number" id="statActiveSubjects">5 / 6</div>
+        <div class="stat-footer-meta">
+          <span>STATUS: MAINTAINED // TERM: 2026_FALL</span>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           4. MAIN FEED CELL (Center/Right Span - 6 Cols, 2 Rows)
+           Header: recent files (blue, lowercase)
+           Content: Note files with date/size in monospace
+           ==================================================================== -->
+      <section class="bento-cell cell-main-feed">
+        <div class="feed-header-row">
+          <h2 class="cell-header">recent files</h2>
+          <div class="feed-filter-tags">
+            <button class="filter-tag active" data-filter="ALL">ALL</button>
+            <button class="filter-tag" data-filter="PDF">PDF</button>
+            <button class="filter-tag" data-filter="PPT">PPT</button>
+            <button class="filter-tag" data-filter="DOC">DOC</button>
+            <button class="filter-tag" data-filter="ZIP">ZIP</button>
+          </div>
+        </div>
+
+        <div class="file-list" id="fileListContainer">
+          <!-- Populated dynamically via app.js with raw row layouts -->
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           5. ACTIVITY CELL (Bottom Left - 6 Cols)
+           Header: download history (blue, lowercase)
+           Content: Flat bar chart over last 7 days (orange & yellow)
+           ==================================================================== -->
+      <section class="bento-cell cell-activity">
+        <h2 class="cell-header">download history</h2>
+        
+        <div class="chart-wrapper">
+          <div class="bar-chart-container">
+            <div class="bar-col">
+              <span class="bar-value">128</span>
+              <div class="bar-block" style="height: 64%;"></div>
+            </div>
+            <div class="bar-col">
+              <span class="bar-value">94</span>
+              <div class="bar-block alt" style="height: 48%;"></div>
+            </div>
+            <div class="bar-col">
+              <span class="bar-value">186</span>
+              <div class="bar-block" style="height: 88%;"></div>
+            </div>
+            <div class="bar-col">
+              <span class="bar-value">142</span>
+              <div class="bar-block alt" style="height: 70%;"></div>
+            </div>
+            <div class="bar-col">
+              <span class="bar-value">210</span>
+              <div class="bar-block" style="height: 98%;"></div>
+            </div>
+            <div class="bar-col">
+              <span class="bar-value">165</span>
+              <div class="bar-block alt" style="height: 78%;"></div>
+            </div>
+            <div class="bar-col">
+              <span class="bar-value">198</span>
+              <div class="bar-block" style="height: 92%;"></div>
+            </div>
+          </div>
+          <div class="bar-labels">
+            <span>MON</span>
+            <span>TUE</span>
+            <span>WED</span>
+            <span>THU</span>
+            <span>FRI</span>
+            <span>SAT</span>
+            <span>SUN</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           6. UPLOAD ZONE CELL (Bottom Right - 6 Cols)
+           Header: quick drop (blue, lowercase)
+           Content: Drag-and-drop area with dashed black border and [ drop files here ]
+           ==================================================================== -->
+      <section class="bento-cell cell-upload-zone">
+        <h2 class="cell-header">quick drop</h2>
+        <div class="drop-area" id="quickDropZone">
+          <input type="file" id="quickFileInput" hidden multiple />
+          <div class="drop-icon">⇪</div>
+          <div class="drop-text-mono">[ drop files here ]</div>
+          <div class="drop-hint-mono">OR CLICK TO INITIALIZE LOCAL_FILE_PICKER</div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ====================================================================
+       NEO-BRUTALIST UPLOAD NOTE MODAL
+       ==================================================================== -->
+  <div class="modal-backdrop" id="uploadModal">
+    <div class="modal-box-brutal">
+      <div class="modal-titlebar">
+        <span>ACTION_RECORD: UPLOAD_NEW_NOTE</span>
+        <button type="button" class="modal-close-btn" id="closeModalBtn" title="Abort">✕</button>
+      </div>
+
+      <form id="uploadForm" class="modal-content">
+        <div class="brutal-field">
+          <label class="brutal-label">subject / category</label>
+          <select id="modalSubjectSelect" class="brutal-input" required>
+            <option value="CS301">Data Structures & Algorithms (CS301)</option>
+            <option value="CS302">Operating Systems (CS302)</option>
+            <option value="CS303">Database Management Systems (CS303)</option>
+            <option value="CS304">Computer Networks (CS304)</option>
+            <option value="CS305">Software Engineering (CS305)</option>
+          </select>
+        </div>
+
+        <div class="brutal-field">
+          <label class="brutal-label">note title / filename</label>
+          <input type="text" id="modalTitleInput" class="brutal-input" placeholder="e.g., Dijkstra_Shortest_Path_Notes" required />
+        </div>
+
+        <div class="brutal-field">
+          <label class="brutal-label">file resource</label>
+          <input type="file" id="modalFileInput" class="brutal-input" required />
+        </div>
+
+        <div class="brutal-field">
+          <label class="brutal-label">contributor handle</label>
+          <input type="text" id="modalContributorInput" class="brutal-input" placeholder="e.g., student_404" />
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-brutal" id="cancelModalBtn">abort</button>
+          <button type="submit" class="btn-brutal btn-action">[ commit upload ]</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

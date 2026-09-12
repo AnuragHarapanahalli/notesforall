@@ -41,7 +41,7 @@ import { AuthService } from '../../../services/auth.service';
                 class="form-input"
                 [(ngModel)]="username"
                 name="username"
-                placeholder="admin"
+                placeholder="Enter username"
                 required
                 autocomplete="username"
               />
@@ -55,7 +55,7 @@ import { AuthService } from '../../../services/auth.service';
                 class="form-input"
                 [(ngModel)]="password"
                 name="password"
-                placeholder="••••••••"
+                placeholder="Enter password"
                 required
                 autocomplete="current-password"
               />
@@ -244,7 +244,7 @@ export class AdminLoginComponent {
         this.router.navigate(['/admin']);
       },
       error: () => {
-        this.errorMsg = 'Invalid credentials. Default: admin / admin123';
+        this.errorMsg = 'Invalid credentials. Please check your username and password.';
         this.loading = false;
       }
     });
